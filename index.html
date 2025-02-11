@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspire 400K - Fueling the Next Generation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    :root {
+        --primary-color: #00D67B;
+        --primary-dark: #00B868;
+        --secondary-color: #F5F8FA;
+        --text-color: #1A1A1A;
+        --background-color: #FFFFFF;
+        --accent-color: #FFD700;
+        --gradient-start: #00D67B;
+        --gradient-end: #00B868;
+        --luxury-black: #1A1A1A;
+        --luxury-gold: #FFD700;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+    
+    /* Navigation Bar */
+    .nav-container {
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 1.2rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    }
+    
+    .nav-logo {
+        color: var(--luxury-gold);
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        letter-spacing: 1px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    
+    .nav-logo:hover {
+        transform: scale(1.05);
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+    
+    .nav-menu {
+        display: flex;
+        list-style-type: none;
+        gap: 2.5rem;
+    }
+    
+    .nav-menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 500;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 0.7rem 1.5rem;
+        border-radius: 50px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .nav-menu a::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: -1;
+        border-radius: 50px;
+    }
+    
+    .nav-menu a:hover {
+        color: var(--luxury-gold);
+        transform: translateY(-2px);
+    }
+    
+    .nav-menu a:hover::before {
+        opacity: 0.1;
+    }
+    
+    /* Banner */
+    .banner-container {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .banner-slider {
+        display: flex;
+        transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        height: 100%;
+    }
+    
+    .banner-slide {
+        min-width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+    
+    .banner-slide::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to bottom,
+            rgba(26, 26, 26, 0.7),
+            rgba(0, 214, 123, 0.5)
+        );
+    }
+    
+    .banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at center,
+            transparent 0%,
+            rgba(26, 26, 26, 0.8) 100%
+        );
+    }
+    
+    .banner-nav {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 1.2rem;
+        z-index: 10;
+    }
+    
+    .banner-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        position: relative;
+    }
+    
+    .banner-dot::after {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+        border-radius: 50%;
+        border: 2px solid var(--luxury-gold);
+        opacity: 0;
+        transition: all 0.4s ease;
+    }
+    
+    .banner-dot.active {
+        background: var(--luxury-gold);
+        transform: scale(1.2);
+    }
+    
+    .banner-dot.active::after {
+        opacity: 1;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        text-align: center;
+        margin-top: -60vh;
+        position: relative;
+        z-index: 10;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .title {
+        font-size: 5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        letter-spacing: 4px;
+        line-height: 1.2;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: var(--luxury-gold);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+    
+    .gradient-text {
+        background: linear-gradient(45deg, var(--luxury-gold), #FFF);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        padding: 0 1rem;
+        text-shadow: none;
+    }
+    
+    .subtitle {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+    }
+    
+    .prize-amount {
+        font-size: 3rem;
+        color: var(--luxury-gold);
+        font-weight: bold;
+        margin-bottom: 3rem;
+        text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        letter-spacing: 2px;
+    }
+    
+    /* Countdown */
+    .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .countdown-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        border-radius: 20px;
+        min-width: 120px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .countdown-item:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+    
+    .countdown-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: white;
+        line-height: 1;
+        margin-bottom: 0.8rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .countdown-label {
+        font-size: 1rem;
+        color: var(--luxury-gold);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 500;
+    }
+    
+    /* CTA Button */
+    .cta-button {
+        display: inline-block;
+        padding: 1.2rem 4rem;
+        background: linear-gradient(45deg, var(--luxury-gold), #FFA500);
+        color: var(--luxury-black);
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.3rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
+        letter-spacing: 1px;
+        border: 2px solid transparent;
+    }
+    
+    .cta-button:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 12px 40px rgba(255, 215, 0, 0.4);
+        border-color: rgba(255, 215, 0, 0.5);
+    }
+    
+    .button-glow {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+        transform: rotate(45deg);
+        animation: button-glow 4s infinite;
+    }
+    
+    @keyframes button-glow {
+        0% {
+            transform: rotate(45deg) translateX(-100%);
+        }
+        100% {
+            transform: rotate(45deg) translateX(100%);
+        }
+    }
+    
+    /* Grid Sections */
+    .grid-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 3rem;
+        margin: 6rem 0;
+        background: rgba(255, 255, 255, 0.02);
+        padding: 3rem;
+        border-radius: 30px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 215, 0, 0.1);
+    }
+    
+    .benefits-section, .timeline-section {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 25px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 214, 123, 0.1);
+    }
+    
+    .benefits-section:hover, .timeline-section:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: var(--luxury-gold);
+    }
+    
+    .section-title {
+        color: var(--luxury-black);
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--luxury-gold);
+        position: relative;
+        letter-spacing: 1px;
+    }
+    
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background: var(--primary-color);
+        box-shadow: 0 0 10px rgba(0, 214, 123, 0.5);
+    }
+    
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .benefit-item {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(0, 214, 123, 0.1);
+    }
+    
+    .benefit-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        border-color: var(--luxury-gold);
+    }
+    
+    .benefit-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+        transition: transform 0.4s ease;
+    }
+    
+    .benefit-item:hover .benefit-icon {
+        transform: scale(1.2);
+    }
+    
+    .timeline-item {
+        margin-bottom: 2rem;
+        padding-left: 1.5rem;
+        border-left: 2px solid var(--luxury-gold);
+        position: relative;
+    }
+    
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -8px;
+        top: 0;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--luxury-gold);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    
+    .timeline-date {
+        color: var(--primary-color);
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+    
+    /* Footer */
+    footer {
+        margin-top: 6rem;
+        padding: 3rem 0;
+        text-align: center;
+        background: var(--luxury-black);
+        border-radius: 30px 30px 0 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 215, 0, 0.5), 
+            transparent
+        );
+    }
+    
+    .footer-logo {
+        color: var(--luxury-gold);
+        font-weight: bold;
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .footer-links a {
+        color: white;
+        text-decoration: none;
+        margin: 0 1.5rem;
+        transition: all 0.4s ease;
+        font-weight: 500;
+        position: relative;
+    }
+    
+    .footer-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--luxury-gold);
+        transition: width 0.4s ease;
+    }
+    
+    .footer-links a:hover {
+        color: var(--luxury-gold);
+    }
+    
+    .footer-links a:hover::after {
+        width: 100%;
+    }
+    
+    .footer-copyright {
+        margin-top: 1.5rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .nav-menu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--luxury-black);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+    
+        .nav-menu.active {
+            display: flex;
+        }
+    
+        .hamburger {
+            display: block;
+            cursor: pointer;
+        }
+    
+        .grid-container {
+            grid-template-columns: 1fr;
+            padding: 2rem;
+        }
+    
+        .hero-section {
+            margin-top: -50vh;
+        }
+    
+        .title {
+            font-size: 3.5rem;
+        }
+    
+        .countdown {
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    
+        .countdown-item {
+            min-width: 100px;
+            padding: 1.5rem;
+        }
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .fade-in {
+        animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    @keyframes shimmer {
+        0% {
+            background-position: -200% center;
+        }
+        100% {
+            background-position: 200% center;
+        }
+    }
+    
+    .shimmer {
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 215, 0, 0.2),
+            transparent
+        );
+        background-size: 200% 100%;
+        animation: shimmer 3s infinite;
+        
+    }</style>
+<body>
+    <nav class="nav-container">
+        <a href="#home" class="nav-logo">Aspire 400K</a>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="payment400k.html">Register</a></li>
+        </ul>
+        <div class="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <div class="banner-container">
+        <div class="banner-slider">
+            <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=2940');"></div>       
+            <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=2940');"></div>
+            <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=2940');"></div>
+            <div class="banner-slide" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=2940');"></div>
+        </div>
+        <div class="banner-overlay"></div>
+        <div class="banner-nav"></div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <div class="hero-section">
+                <h1 class="title">ASPIRE <span id="titleNumber" class="gradient-text">0</span>K</h1>
+                <p class="subtitle">Fueling the Next Generation of Entrepreneurs</p>
+                <div class="prize-amount">₹<span id="prizeAmount">0</span> Grand Prize!</div>
+            </div>
+
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+
+            <a href="payment400k.html" class="cta-button" id="registerButton">
+                Register Now
+                <span class="button-glow"></span>
+            </a>
+
+            <div class="grid-container">
+                <div class="benefits-section">
+                    <h2 class="section-title">CONNEXGROW PRESENTS</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            INR 4 Lac Grand Prize
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            INR 10 LAC in Perks
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            Mentoring & Incubation Support
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            Networking Opportunities
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            Learning Interaction with Mentors
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            Corporate Association Opportunity
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon"></div>
+                            Funding Readiness for selected startups
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <h2 class="section-title">TIMELINE</h2>
+                    <div class="timeline-item">
+                        <div class="timeline-date">15TH MAR</div>
+                        <div>PRESENTATION SUBMISSION</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">31ST MAR</div>
+                        <div>VIDEO PITCH ROUND</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">7TH APR</div>
+                        <div>INVESTOR'S PITCH ROUND</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">15TH APR</div>
+                        <div>WINNER ANNOUNCEMENT</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-logo">Powered by ConnexGrow</div>
+            <div class="footer-links">
+                <a href="http://www.connexgrow.com" target="_blank">www.connexgrow.com</a>
+            </div>
+            <div class="footer-copyright">
+                All rights reserved by NULYF GLOBAL © 2025
+            </div>
+        </footer>
+    </div>
+    <script>// Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu on link click
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Banner Slider
+        const slider = document.querySelector('.banner-slider');
+        const slides = document.querySelectorAll('.banner-slide');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+            document.querySelectorAll('.banner-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        function createDots() {
+            const navContainer = document.querySelector('.banner-nav');
+            navContainer.innerHTML = '';
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('banner-dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                });
+                navContainer.appendChild(dot);
+            });
+        }
+        
+        createDots();
+        
+        // Auto slide with smooth transition
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }, 5000);
+        
+        // Countdown Timer
+        const countDownDate = new Date("Mar 1, 2025 00:00:00").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+        
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+            document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+        
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector('.countdown').innerHTML = "<div class='expired-notice'>COMPETITION ENDED</div>";
+            }
+        }
+        
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Smooth number animations
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start).toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Animate numbers on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const titleNumber = document.getElementById("titleNumber");
+            const prizeAmount = document.getElementById("prizeAmount");
+            
+            animateValue(titleNumber, 0, 400, 2000);
+            animateValue(prizeAmount, 0, 400000, 2000);
+        
+            // Add fade-in animation to elements
+            const elements = document.querySelectorAll('.benefit-item, .timeline-item');
+            elements.forEach((element, index) => {
+                element.style.opacity = '0';
+                setTimeout(() => {
+                    element.classList.add('fade-in');
+                }, index * 100);
+            });
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });</script>
+</body>
+</html>
